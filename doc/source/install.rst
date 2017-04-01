@@ -14,7 +14,7 @@ the following::
 
 You can also install previous releases from GitHub directly as follows::
 
-    pip install https://github.com/sassoftware/python-pipefitter/releases/pipefitter-X.X.X.tar.gz
+    pip install https://github.com/sassoftware/python-pipefitter/releases/download/vX.X.X/pipefitter-X.X.X.tar.gz
 
 The releases for pipefitter can be found at
 `<https://github.com/sassoftware/python-pipefitter/releases/>`_.
