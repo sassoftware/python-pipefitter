@@ -10,11 +10,11 @@ SAS Pipefitter
 
 **Date**: |today| **Version**: |version|
 
-**Binary Installers:** `<http://github.com/sassoftware/pipefitter/releases>`_
+**Binary Installers:** `<http://github.com/sassoftware/python-pipefitter/releases>`_
 
-**Source Repository:** `<http://github.com/sassoftware/pipefitter>`_
+**Source Repository:** `<http://github.com/sassoftware/python-pipefitter>`_
 
-**Issues & Ideas:** `<https://github.com/sassoftware/pipefitter/issues>`_
+**Issues & Ideas:** `<https://github.com/sassoftware/python-pipefitter/issues>`_
 
 
 SAS Pipefitter provides Python APIs for developing repeatable
