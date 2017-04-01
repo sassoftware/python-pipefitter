@@ -21,7 +21,7 @@ SAS pipefitter can be installed as follows with `pip`:
 
 Alternatively, you can install a specific release as follows:
 
-    pip install pip install https://github.com/sassoftware/pipefitter/releases/download/vX.X.X/pipefitter-X.X.X-platform.tar.gz
+    pip install pip install https://github.com/sassoftware/python-pipefitter/releases/download/vX.X.X/pipefitter-X.X.X-platform.tar.gz
 
 ## Dependencies
 
@@ -39,7 +39,7 @@ SAS platforms introduce dependencies of their own.
 
 ## Resources
 
-Pipefitter documentation: <http://sassoftware.github.io/pipefitter/>
+Pipefitter documentation: <http://sassoftware.github.io/python-pipefitter/>
 
 SASPy <http://github.com/sassoftware/saspy/>
 
