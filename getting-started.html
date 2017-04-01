@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; Pipefitter 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pipefitter 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="API Reference" href="api.html"/>
+        <link rel="prev" title="Installation and configuration" href="install.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pipefitter
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview of SAS pipefitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation and configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about-this-example">About this example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-pipeline">Build the pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-pipeline-in-sas-9-4">Run the pipeline in SAS 9.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-pipeline-in-sas-viya-and-sas-cloud-analytic-services">Run the pipeline in SAS Viya and SAS Cloud Analytic Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bonus-hyperparameter-tuning">Bonus: HyperParameter tuning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Pipefitter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-this-example">
+<h2>About this example<a class="headerlink" href="#about-this-example" title="Permalink to this headline">¶</a></h2>
+<p>This section provides a simple example that demonstrates how to use the
+basic functionality of the software to create repeatable pipelines. The
+simplest example follows this pattern:</p>
+<ol class="arabic simple">
+<li>Create an instance of a <code class="xref py py-class docutils literal"><span class="pre">Pipeline</span></code> class.</li>
+<li>Add transformer stages to handle variable imputation.</li>
+<li>Add an estimator stage to generate parameter estimates.</li>
+<li>Run the pipeline with the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method to create a pipeline model.</li>
+<li>Run the <code class="xref py py-meth docutils literal"><span class="pre">score()</span></code> method on the model with new data to score and
+assess the model.</li>
+</ol>
+<p>To demonstrate these common steps for developing a machine learning pipeline,
+the Titanic training data set from a Kaggle competition is used.</p>
+<p>Because pipefitter can run in SAS 9 or SAS Viya, the last two steps are data
+dependent and this document shows how to run the pipeline first with SAS 9
+and then with SAS Viya.</p>
+</div>
+<div class="section" id="build-the-pipeline">
+<h2>Build the pipeline<a class="headerlink" href="#build-the-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>First, download the training data to a Pandas DataFrame.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [2]: </span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/train.csv&#39;</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">   PassengerId  Survived  Pclass  \</span>
+<span class="go">0            1         0       3   </span>
+<span class="go">1            2         1       1   </span>
+<span class="go">2            3         1       3   </span>
+<span class="go">3            4         1       1   </span>
+<span class="go">4            5         0       3   </span>
+
+<span class="go">                                                Name     Sex   Age  SibSp  \</span>
+<span class="go">0                            Braund, Mr. Owen Harris    male  22.0      1   </span>
+<span class="go">1  Cumings, Mrs. John Bradley (Florence Briggs Th...  female  38.0      1   </span>
+<span class="go">2                             Heikkinen, Miss. Laina  female  26.0      0   </span>
+<span class="go">3       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  35.0      1   </span>
+<span class="go">4                           Allen, Mr. William Henry    male  35.0      0   </span>
+
+<span class="go">   Parch            Ticket     Fare Cabin Embarked  </span>
+<span class="go">0      0         A/5 21171   7.2500   NaN        S  </span>
+<span class="go">1      0          PC 17599  71.2833   C85        C  </span>
+<span class="go">2      0  STON/O2. 3101282   7.9250   NaN        S  </span>
+<span class="go">3      0            113803  53.1000  C123        S  </span>
+<span class="go">4      0            373450   8.0500   NaN        S  </span>
+</pre></div>
+</div>
+<p>There are both numeric and character columns that contain missing values.
+The pipeline can start with two transformer stages to fill missing numeric
+values with the mean and missing character values with the most common value.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="kn">from</span> <span class="nn">pipefitter.transformer</span> <span class="kn">import</span> <span class="n">Imputer</span>
+
+<span class="gp">In [5]: </span><span class="n">meanimp</span> <span class="o">=</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">Imputer</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="n">modeimp</span> <span class="o">=</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">Imputer</span><span class="o">.</span><span class="n">MODE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following statements add these stages to a pipeline. Printing the object
+shows that the pipeline includes the two stages.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="kn">from</span> <span class="nn">pipefitter.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="gp">In [8]: </span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span><span class="n">meanimp</span><span class="p">,</span> <span class="n">modeimp</span><span class="p">])</span>
+
+<span class="gp">In [9]: </span><span class="n">pipe</span>
+<span class="gh">Out[9]: </span><span class="go">Pipeline([Imputer(MEAN), Imputer(MODE)])</span>
+</pre></div>
+</div>
+<p>The last stage of the pipeline is an estimator. To model the survival of
+passengers, we can train a decision tree model. This is done using the
+<code class="xref py py-class docutils literal"><span class="pre">DecisionTree</span></code> object in the <code class="xref py py-mod docutils literal"><span class="pre">pipefitter.estimator</span></code> module.
+We set the target, inputs, and nominals arguments to match the
+variables in the data set.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="kn">from</span> <span class="nn">pipefitter.estimator</span> <span class="kn">import</span> <span class="n">DecisionTree</span>
+
+<span class="gp">In [11]: </span><span class="n">dtree</span> <span class="o">=</span> <span class="n">DecisionTree</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span>
+<span class="gp">   ....: </span>                     <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">],</span>
+<span class="gp">   ....: </span>                     <span class="n">nominals</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">])</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [12]: </span><span class="n">dtree</span>
+<span class="gh">Out[12]: </span><span class="go">DecisionTree(alpha=0.0, cf_level=0.25, criterion=None, inputs=[&#39;Sex&#39;, &#39;Age&#39;, &#39;Fare&#39;], leaf_size=5, max_branches=2, max_depth=6, n_bins=20, nominals=[&#39;Sex&#39;, &#39;Survived&#39;], prune=False, target=&#39;Survived&#39;, var_importance=False)</span>
+</pre></div>
+</div>
+<p>In addition to <code class="xref py py-class docutils literal"><span class="pre">DecisionTree</span></code>, there are other estimators such as
+<code class="xref py py-class docutils literal"><span class="pre">DecisionForest</span></code>, <code class="xref py py-class docutils literal"><span class="pre">GBTree</span></code>, and <code class="xref py py-class docutils literal"><span class="pre">LogisticRegression</span></code>
+that can be used in similar ways. You can use these estimators in pipelines.</p>
+<p>To complete the work on the pipeline, add the estimator stage.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">pipe</span><span class="o">.</span><span class="n">stages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dtree</span><span class="p">)</span>
+
+<span class="gp">In [14]: </span><span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">pipe</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="go">Imputer(MEAN) </span>
+
+<span class="go">Imputer(MODE) </span>
+
+<span class="go">DecisionTree(alpha=0.0, cf_level=0.25, criterion=None, inputs=[&#39;Sex&#39;, &#39;Age&#39;, &#39;Fare&#39;], leaf_size=5, max_branches=2, max_depth=6, n_bins=20, nominals=[&#39;Sex&#39;, &#39;Survived&#39;], prune=False, target=&#39;Survived&#39;, var_importance=False) </span>
+</pre></div>
+</div>
+<p>Now that the pipeline is complete, we just need to add training data.</p>
+</div>
+<div class="section" id="run-the-pipeline-in-sas-9-4">
+<h2>Run the pipeline in SAS 9.4<a class="headerlink" href="#run-the-pipeline-in-sas-9-4" title="Permalink to this headline">¶</a></h2>
+<p>This section follows on the pipeline set up work from the preceding section.
+The SASPy package enables you to run analytics in SAS 9.4 and higher from
+a Python API.</p>
+<p>First, start a SAS session and copy the training data to a SAS data set.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="kn">import</span> <span class="nn">saspy</span>
+
+<span class="gp">In [16]: </span><span class="n">sasconn</span> <span class="o">=</span> <span class="n">saspy</span><span class="o">.</span><span class="n">SASsession</span><span class="p">(</span><span class="n">cfgname</span><span class="o">=</span><span class="n">cfgname</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-16-8f2244f5e07f&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sasconn</span> <span class="o">=</span> <span class="n">saspy</span><span class="o">.</span><span class="n">SASsession</span><span class="p">(</span><span class="n">cfgname</span><span class="o">=</span><span class="n">cfgname</span><span class="p">)</span>
+
+<span class="nn">/Users/jadean/gitlab/saspy/saspy/sasbase.py</span> in <span class="ni">__init__</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sascfg</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;STDIO&#39;</span><span class="p">,</span> <span class="s1">&#39;SSH&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">running_on_win</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">228</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_io</span> <span class="o">=</span> <span class="n">sasiostdio</span><span class="o">.</span><span class="n">SASsessionSTDIO</span><span class="p">(</span><span class="n">sascfgname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sascfg</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">sb</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>                 <span class="k">print</span><span class="p">(</span>
+
+<span class="nn">/Users/jadean/gitlab/saspy/saspy/sasiostdio.py</span> in <span class="ni">__init__</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>       <span class="bp">self</span><span class="o">.</span><span class="n">_sb</span>      <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sb&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span> 
+<span class="ne">--&gt; </span><span class="mi">150</span>       <span class="bp">self</span><span class="o">.</span><span class="n">_startsas</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+<span class="g g-Whitespace">    </span><span class="mi">152</span>    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/Users/jadean/gitlab/saspy/saspy/sasiostdio.py</span> in <span class="ni">_startsas</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>          <span class="k">return</span> <span class="n">NULL</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>       <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">263</span>          <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;options svgtitle=&#39;svgtitle&#39;; options validvarname=any; ods graphics on;&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span>          <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span>             <span class="k">print</span><span class="p">(</span><span class="s2">&quot;SAS Connection failed. No connection established. Double check you settings in sascfg.py file.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>  
+
+<span class="nn">/Users/jadean/gitlab/saspy/saspy/sasiostdio.py</span> in <span class="ni">submit</span><span class="nt">(self, code, results, prompt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>          <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">LOG</span><span class="o">=</span><span class="s2">&quot;No SAS process attached. SAS process has terminated unexpectedly.&quot;</span><span class="p">,</span> <span class="n">LST</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span> 
+<span class="ne">--&gt; </span><span class="mi">457</span>       <span class="n">rc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">waitid</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">P_PID</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">WEXITED</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">WNOHANG</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span>       <span class="k">if</span> <span class="n">rc</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>          <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="ne">AttributeError</span>: module &#39;os&#39; has no attribute &#39;waitid&#39;
+
+<span class="gp">In [17]: </span><span class="n">train_ds</span> <span class="o">=</span> <span class="n">sasconn</span><span class="o">.</span><span class="n">df2sd</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;train_ds&quot;</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-17-f1dbccb87e87&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 train_ds = sasconn.df2sd(df=train, table=&quot;train_ds&quot;)</span>
+
+<span class="go">NameError: name &#39;sasconn&#39; is not defined</span>
+
+<span class="gp">In [18]: </span><span class="n">train_ds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-18-d4310043b2d3&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 train_ds.head()</span>
+
+<span class="go">NameError: name &#39;train_ds&#39; is not defined</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For information about starting a SAS session with the SASPy package,
+see <a class="reference external" href="http://sassoftware.github.io/saspy/getting-started.html#start-a-sas-session">http://sassoftware.github.io/saspy/getting-started.html#start-a-sas-session</a>.</p>
+</div>
+<p>Next, generate the model using the <code class="xref py py-meth docutils literal"><span class="pre">Pipeline.fit()</span></code> method. The training
+data is supplied as an argument. This method returns a <code class="xref py py-class docutils literal"><span class="pre">PipelineModel</span></code>
+object.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">pipeline_model</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_ds</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-19-b7d4883c07c0&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pipeline_model</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_ds</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;train_ds&#39; is not defined
+
+<span class="gp">In [20]: </span><span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">pipeline_model</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="k">print</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-20-65b871cf61c8&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 for stage in pipeline_model:</span>
+<span class="go">      2     print(stage, &quot;\n&quot;)</span>
+<span class="go">      3 </span>
+
+<span class="go">NameError: name &#39;pipeline_model&#39; is not defined</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the pipeline model, the decision tree becomes a decision
+tree model.</p>
+</div>
+<p>View the model assessment by running the <code class="xref py py-meth docutils literal"><span class="pre">PipelineModel.score()</span></code> method
+with the training data.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">pipeline_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_ds</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-21-e39bd25a1690&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pipeline_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_ds</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;pipeline_model&#39; is not defined
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-pipeline-in-sas-viya-and-sas-cloud-analytic-services">
+<h2>Run the pipeline in SAS Viya and SAS Cloud Analytic Services<a class="headerlink" href="#run-the-pipeline-in-sas-viya-and-sas-cloud-analytic-services" title="Permalink to this headline">¶</a></h2>
+<p>This section follows on the pipeline set up work from the first section. If
+you ran the SAS 9.4 section with SASPy, you can continue with the code in
+this section:</p>
+<ul class="simple">
+<li>The pipelines are designed to be portable.</li>
+<li>The location of the data determines where the pipeline runs&#8211;in SAS 9.4
+or in-memory tables in CAS.</li>
+<li>The model implementations are different between platforms, so the model
+does need to be retrained.</li>
+</ul>
+<p>Use SAS SWAT to connect to SAS Cloud Analytic Services on SAS Viya.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="kn">import</span> <span class="nn">swat</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-22-2c3f045051f1&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">swat</span>
+
+<span class="ne">ImportError</span>: No module named &#39;swat&#39;
+
+<span class="gp">In [23]: </span><span class="n">casconn</span> <span class="o">=</span> <span class="n">swat</span><span class="o">.</span><span class="n">CAS</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-23-f98eb8157115&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 casconn = swat.CAS(host, port, userid, password)</span>
+
+<span class="go">NameError: name &#39;swat&#39; is not defined</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For information about starting a CAS session with the SWAT package,
+see <a class="reference external" href="https://sassoftware.github.io/python-swat/getting-started.html">https://sassoftware.github.io/python-swat/getting-started.html</a>.</p>
+</div>
+<p>All processing in pipefitter begins with a data set.  In the case of SAS SWAT,
+the data set is a <code class="xref py py-class docutils literal"><span class="pre">CASTable</span></code> object. You can
+create a CASTable from the training data that was initially downloaded.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">train_ct</span> <span class="o">=</span> <span class="n">casconn</span><span class="o">.</span><span class="n">upload_frame</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">casout</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_ct&quot;</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-24-96785a2edf06&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_ct</span> <span class="o">=</span> <span class="n">casconn</span><span class="o">.</span><span class="n">upload_frame</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">casout</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_ct&quot;</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;casconn&#39; is not defined
+
+<span class="gp">In [25]: </span><span class="n">train_ct</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-25-be62fe5d61cd&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 train_ct.info()</span>
+
+<span class="go">NameError: name &#39;train_ct&#39; is not defined</span>
+</pre></div>
+</div>
+<p>The results of the info function demonstrate again that the training
+data has missing values. Because the pipeline has the two transformer stages, the
+missing values are replaced when the model is trained.</p>
+<p>Use the same <code class="xref py py-class docutils literal"><span class="pre">Pipeline</span></code> instance to generate another <code class="xref py py-class docutils literal"><span class="pre">PipelineModel</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">pipeline_model</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_ct</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-26-3ef7bd5e531c&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pipeline_model</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_ct</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;train_ct&#39; is not defined
+
+<span class="gp">In [27]: </span><span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">pipeline_model</span><span class="p">:</span>
+<span class="gp">   ....: </span>  <span class="k">print</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-27-8bad6f3a5e31&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 for stage in pipeline_model:</span>
+<span class="go">      2   print(stage, &quot;\n&quot;)</span>
+<span class="go">      3 </span>
+
+<span class="go">NameError: name &#39;pipeline_model&#39; is not defined</span>
+</pre></div>
+</div>
+<p>Use the pipeline model to score the training data and show the model assessment.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">pipeline_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_ct</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-28-5cde08bfb8b0&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pipeline_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_ct</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;pipeline_model&#39; is not defined
+</pre></div>
+</div>
+<p>As you can see, the results include many measures that are in common with the
+results from SAS 9.4 with SASPy. For example, the <code class="docutils literal"><span class="pre">NObsUsed</span></code> and
+<code class="docutils literal"><span class="pre">MisClassificationRate</span></code> values are common.</p>
+</div>
+<div class="section" id="bonus-hyperparameter-tuning">
+<h2>Bonus: HyperParameter tuning<a class="headerlink" href="#bonus-hyperparameter-tuning" title="Permalink to this headline">¶</a></h2>
+<p>In addition to creating pipelines of transformers and estimators, you can test
+various permutations of parameters using the <code class="xref py py-class docutils literal"><span class="pre">HyperParameterTuning</span></code> class.
+This class takes a grid of parameters to test and applies them to an estimator
+or a pipeline and returns the compiled results.  The parameter grid can be either
+a dictionary of key/value pairs where the values are lists, or a list of dictionaries
+containing the complete set of parameters to test.</p>
+<p>The hyperparameter tuning can be performed on pipelines.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="kn">from</span> <span class="nn">pipefitter.model_selection</span> <span class="kn">import</span> <span class="n">HyperParameterTuning</span> <span class="k">as</span> <span class="n">HPT</span>
+
+<span class="gp">In [30]: </span><span class="n">hpt</span> <span class="o">=</span> <span class="n">HPT</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipe</span><span class="p">,</span>
+<span class="gp">   ....: </span>          <span class="n">param_grid</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+<span class="gp">   ....: </span>                          <span class="n">leaf_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+<span class="gp">   ....: </span>          <span class="n">score_type</span><span class="o">=</span><span class="s1">&#39;MisClassificationRate&#39;</span><span class="p">,</span>
+<span class="gp">   ....: </span>          <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [31]: </span><span class="n">hpt</span><span class="o">.</span><span class="n">gridsearch</span><span class="p">(</span><span class="n">train_ct</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-31-78b1b26fe2f0&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">hpt</span><span class="o">.</span><span class="n">gridsearch</span><span class="p">(</span><span class="n">train_ct</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;train_ct&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installation and configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017 SAS Institute Inc. All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

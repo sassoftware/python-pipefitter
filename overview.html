@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview of SAS pipefitter &mdash; Pipefitter 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pipefitter 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Installation and configuration" href="install.html"/>
+        <link rel="prev" title="SAS Pipefitter" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pipefitter
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview of SAS pipefitter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-sas-pipefitter">What is SAS pipefitter?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-status">Project status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation and configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Pipefitter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Overview of SAS pipefitter</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview-of-sas-pipefitter">
+<h1>Overview of SAS pipefitter<a class="headerlink" href="#overview-of-sas-pipefitter" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-sas-pipefitter">
+<h2>What is SAS pipefitter?<a class="headerlink" href="#what-is-sas-pipefitter" title="Permalink to this headline">¶</a></h2>
+<p>The SAS pipefitter package provides a Python API for developing
+pipelines for data transformation and model fitting as stages
+of a repeatable workflow.</p>
+<img alt="_images/pipeline.png" src="_images/pipeline.png" />
+<p>The package enables you to work with data in SAS to implement
+stages such as the following:</p>
+<ul class="simple">
+<li>Impute missing values.</li>
+<li>Select and engineer features.</li>
+<li>Fit parameter estimates with decision trees, neural networks,
+and other machine learning techniques.</li>
+<li>Use hyperparameter tuning to speed model selection.</li>
+<li>Score data and assess models.</li>
+</ul>
+<p>Another important feature of pipefitter is that it builds on the
+abilities of two other Python packages provided by SAS:</p>
+<dl class="docutils">
+<dt>SWAT</dt>
+<dd>A package that enables data transfer and analysis with
+SAS Cloud Analytic Services&#8211;the centerpiece of the SAS Viya
+platform&#8211;for in-memory analytics.</dd>
+<dt>SASPy</dt>
+<dd>A package that enables data transfer and analysis with
+SAS 9.4&#8211;business-proven software for analytics, data
+manipulation, and visualization.</dd>
+</dl>
+<p>The pipeline stages, such as estimating parameters with logistic
+regression are designed to run identically in SAS 9 though SASPy
+or in CAS through SWAT.  The pipeline automatically adjusts to run the
+analysis where your data is by detecting the data set type.
+<code class="xref py py-class docutils literal"><span class="pre">SASdata</span></code> objects will run through SASPy, whereas <code class="xref py py-class docutils literal"><span class="pre">CASTable</span></code>
+objects run through SWAT.</p>
+<p>See <a class="reference internal" href="getting-started.html"><span class="doc">Getting started</span></a> for examples.</p>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>SAS pipefitter is a pure Python package that supports Python 2.7 or 3.4+.
+However, you must install one or both of the following packages that
+are used to connect to SAS 9.4 or SAS Viya.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="61%" />
+<col width="19%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package</th>
+<th class="head">SAS Platfom</th>
+<th class="head">Python Support</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://github.com/sassoftware/saspy">SASPy 2.x</a></td>
+<td>SAS 9.4 or higher</td>
+<td>Python 3.x</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://github.com/sassoftware/python-swat">SWAT v1.1.0+</a></td>
+<td>SAS Viya</td>
+<td>Python 2.7 or 3.4+</td>
+</tr>
+</tbody>
+</table>
+<p>Read the package documentation for additional dependencies, supported
+platforms, and so on.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The most common combination that provides the
+greatest flexibility is to use Linux with 64-bit
+Python 3.4+.</p>
+</div>
+</div>
+<div class="section" id="project-status">
+<h2>Project status<a class="headerlink" href="#project-status" title="Permalink to this headline">¶</a></h2>
+<p>Release 1.0.0 of SAS pipefitter represents an early stage of
+development. This release exploits only a small portion of what
+is possible with SAS 9.4 and SAS Viya.</p>
+<p>For more information, see the following:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.sas.com/en_us/software/sas9.html">https://www.sas.com/en_us/software/sas9.html</a></li>
+<li><a class="reference external" href="https://www.sas.com/en_us/software/viya.html">https://www.sas.com/en_us/software/viya.html</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation and configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="SAS Pipefitter" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017 SAS Institute Inc. All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

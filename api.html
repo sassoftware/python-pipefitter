@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Reference &mdash; Pipefitter 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pipefitter 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="pipefitter.estimator.LogisticRegression" href="generated/pipefitter.estimator.LogisticRegression.html"/>
+        <link rel="prev" title="Getting started" href="getting-started.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pipefitter
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview of SAS pipefitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation and configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#estimators">Estimators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision-tree">Decision Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-forest">Decision Forest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gradient-boosting-tree">Gradient Boosting Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logistic-regression">Logistic Regression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.LogisticRegression.html">pipefitter.estimator.LogisticRegression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.LogisticRegression.fit.html">pipefitter.estimator.LogisticRegression.fit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-regression">Linear Regression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.LinearRegression.html">pipefitter.estimator.LinearRegression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.LinearRegression.fit.html">pipefitter.estimator.LinearRegression.fit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#neural-network">Neural Network</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.NeuralNetwork.html">pipefitter.estimator.NeuralNetwork</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.NeuralNetwork.fit.html">pipefitter.estimator.NeuralNetwork.fit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#models">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision-tree-model">Decision Tree Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-forest-model">Decision Forest Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gradient-boosting-tree-model">Gradient Boosting Tree Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logistic-regression-model">Logistic Regression Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.regression.LogisticRegressionModel.score.html">pipefitter.estimator.regression.LogisticRegressionModel.score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.regression.LogisticRegressionModel.transform.html">pipefitter.estimator.regression.LogisticRegressionModel.transform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-regression-model">Linear Regression Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.regression.LinearRegressionModel.score.html">pipefitter.estimator.regression.LinearRegressionModel.score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.regression.LinearRegressionModel.transform.html">pipefitter.estimator.regression.LinearRegressionModel.transform</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#neural-network-model">Neural Network Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.neural_net.NeuralNetworkModel.score.html">pipefitter.estimator.neural_net.NeuralNetworkModel.score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/pipefitter.estimator.neural_net.NeuralNetworkModel.transform.html">pipefitter.estimator.neural_net.NeuralNetworkModel.transform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pipelines">Pipelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline">Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline-model">Pipeline Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#transformers">Transformers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imputers">Imputers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hyperparameter-tuning">HyperParameter Tuning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Pipefitter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<span id="api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="estimators">
+<h2>Estimators<a class="headerlink" href="#estimators" title="Permalink to this headline">¶</a></h2>
+<p>Estimators are one of the stages that are added to a pipeline.
+An estimator is typically the last stage in a pipeline.</p>
+<p>When you add an estimator, such as a <code class="xref py py-class docutils literal"><span class="pre">DecisionTree</span></code> or
+<code class="xref py py-class docutils literal"><span class="pre">LinearRegression</span></code> to a pipeline, the <code class="docutils literal"><span class="pre">fit</span></code> method
+performs parameter estimation and generates a model. The pipeline
+returns a <code class="xref py py-class docutils literal"><span class="pre">PipelineModel</span></code> that includes the model.</p>
+<div class="section" id="decision-tree">
+<h3>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.DecisionTree.html#pipefitter.estimator.DecisionTree" title="pipefitter.estimator.DecisionTree"><code class="xref py py-obj docutils literal"><span class="pre">DecisionTree</span></code></a>([alpha,&nbsp;cf_level,&nbsp;criterion,&nbsp;...])</td>
+<td>Decision Tree</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.DecisionTree.fit.html#pipefitter.estimator.DecisionTree.fit" title="pipefitter.estimator.DecisionTree.fit"><code class="xref py py-obj docutils literal"><span class="pre">DecisionTree.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Fit function for decision tree</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="decision-forest">
+<h3>Decision Forest<a class="headerlink" href="#decision-forest" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.DecisionForest.html#pipefitter.estimator.DecisionForest" title="pipefitter.estimator.DecisionForest"><code class="xref py py-obj docutils literal"><span class="pre">DecisionForest</span></code></a>([alpha,&nbsp;bootstrap,&nbsp;cf_level,&nbsp;...])</td>
+<td>Decision Forest</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.DecisionForest.fit.html#pipefitter.estimator.DecisionForest.fit" title="pipefitter.estimator.DecisionForest.fit"><code class="xref py py-obj docutils literal"><span class="pre">DecisionForest.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Fit function for decision forest</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gradient-boosting-tree">
+<h3>Gradient Boosting Tree<a class="headerlink" href="#gradient-boosting-tree" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.GBTree.html#pipefitter.estimator.GBTree" title="pipefitter.estimator.GBTree"><code class="xref py py-obj docutils literal"><span class="pre">GBTree</span></code></a>([distribution,&nbsp;...])</td>
+<td>Gradient Boosting Tree</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.GBTree.fit.html#pipefitter.estimator.GBTree.fit" title="pipefitter.estimator.GBTree.fit"><code class="xref py py-obj docutils literal"><span class="pre">GBTree.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Fit function for gradient boosting tree</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="logistic-regression">
+<h3>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.LogisticRegression.html#pipefitter.estimator.LogisticRegression" title="pipefitter.estimator.LogisticRegression"><code class="xref py py-obj docutils literal"><span class="pre">LogisticRegression</span></code></a>([intercept,&nbsp;max_effects,&nbsp;...])</td>
+<td>Logistic Regression</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.LogisticRegression.fit.html#pipefitter.estimator.LogisticRegression.fit" title="pipefitter.estimator.LogisticRegression.fit"><code class="xref py py-obj docutils literal"><span class="pre">LogisticRegression.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Fit function for logistic regression</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="linear-regression">
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.LinearRegression.html#pipefitter.estimator.LinearRegression" title="pipefitter.estimator.LinearRegression"><code class="xref py py-obj docutils literal"><span class="pre">LinearRegression</span></code></a>([intercept,&nbsp;max_effects,&nbsp;...])</td>
+<td>Linear Regression</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.LinearRegression.fit.html#pipefitter.estimator.LinearRegression.fit" title="pipefitter.estimator.LinearRegression.fit"><code class="xref py py-obj docutils literal"><span class="pre">LinearRegression.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Fit function for linear regression</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="neural-network">
+<h3>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.NeuralNetwork.html#pipefitter.estimator.NeuralNetwork" title="pipefitter.estimator.NeuralNetwork"><code class="xref py py-obj docutils literal"><span class="pre">NeuralNetwork</span></code></a>([acts,&nbsp;annealing_rate,&nbsp;...])</td>
+<td>Neural Network</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.NeuralNetwork.fit.html#pipefitter.estimator.NeuralNetwork.fit" title="pipefitter.estimator.NeuralNetwork.fit"><code class="xref py py-obj docutils literal"><span class="pre">NeuralNetwork.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Fit function for neural network</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="models">
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<p>The model classes are created as a result of adding
+an estimator class to a <code class="xref py py-class docutils literal"><span class="pre">Pipeline</span></code> and running
+the <code class="docutils literal"><span class="pre">fit</span></code> method with training data.  The pipeline
+returns a <code class="xref py py-class docutils literal"><span class="pre">PipelineModel</span></code> that includes the model
+form of the estimator.  For example, if the pipeline
+included a <a class="reference internal" href="generated/pipefitter.estimator.NeuralNetwork.html#pipefitter.estimator.NeuralNetwork" title="pipefitter.estimator.NeuralNetwork"><code class="xref py py-class docutils literal"><span class="pre">NeuralNetwork</span></code></a> estimator, then the
+returned pipeline model includes a <code class="xref py py-class docutils literal"><span class="pre">NeuralNetworkModel</span></code>
+instance.</p>
+<div class="section" id="decision-tree-model">
+<h3>Decision Tree Model<a class="headerlink" href="#decision-tree-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.tree.DecisionTreeModel.score.html#pipefitter.estimator.tree.DecisionTreeModel.score" title="pipefitter.estimator.tree.DecisionTreeModel.score"><code class="xref py py-obj docutils literal"><span class="pre">DecisionTreeModel.score</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Score the data using the model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.tree.DecisionTreeModel.transform.html#pipefitter.estimator.tree.DecisionTreeModel.transform" title="pipefitter.estimator.tree.DecisionTreeModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">DecisionTreeModel.transform</span></code></a>(table,&nbsp;\*args,&nbsp;...)</td>
+<td>Transform function for the model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="decision-forest-model">
+<h3>Decision Forest Model<a class="headerlink" href="#decision-forest-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.forest.DecisionForestModel.score.html#pipefitter.estimator.forest.DecisionForestModel.score" title="pipefitter.estimator.forest.DecisionForestModel.score"><code class="xref py py-obj docutils literal"><span class="pre">DecisionForestModel.score</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Score the data using the model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.forest.DecisionForestModel.transform.html#pipefitter.estimator.forest.DecisionForestModel.transform" title="pipefitter.estimator.forest.DecisionForestModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">DecisionForestModel.transform</span></code></a>(table,&nbsp;\*args,&nbsp;...)</td>
+<td>Transform function for the model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gradient-boosting-tree-model">
+<h3>Gradient Boosting Tree Model<a class="headerlink" href="#gradient-boosting-tree-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.gradient_boosting.GBTreeModel.score.html#pipefitter.estimator.gradient_boosting.GBTreeModel.score" title="pipefitter.estimator.gradient_boosting.GBTreeModel.score"><code class="xref py py-obj docutils literal"><span class="pre">GBTreeModel.score</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Score the data using the model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.gradient_boosting.GBTreeModel.transform.html#pipefitter.estimator.gradient_boosting.GBTreeModel.transform" title="pipefitter.estimator.gradient_boosting.GBTreeModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">GBTreeModel.transform</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Transform function for the model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="logistic-regression-model">
+<h3>Logistic Regression Model<a class="headerlink" href="#logistic-regression-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.regression.LogisticRegressionModel.score.html#pipefitter.estimator.regression.LogisticRegressionModel.score" title="pipefitter.estimator.regression.LogisticRegressionModel.score"><code class="xref py py-obj docutils literal"><span class="pre">LogisticRegressionModel.score</span></code></a>(table,&nbsp;\*args,&nbsp;...)</td>
+<td>Score the data using the model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.regression.LogisticRegressionModel.transform.html#pipefitter.estimator.regression.LogisticRegressionModel.transform" title="pipefitter.estimator.regression.LogisticRegressionModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">LogisticRegressionModel.transform</span></code></a>(table,&nbsp;...)</td>
+<td>Transform function for the model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="linear-regression-model">
+<h3>Linear Regression Model<a class="headerlink" href="#linear-regression-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.regression.LinearRegressionModel.score.html#pipefitter.estimator.regression.LinearRegressionModel.score" title="pipefitter.estimator.regression.LinearRegressionModel.score"><code class="xref py py-obj docutils literal"><span class="pre">LinearRegressionModel.score</span></code></a>(table,&nbsp;\*args,&nbsp;...)</td>
+<td>Score the data using the model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.regression.LinearRegressionModel.transform.html#pipefitter.estimator.regression.LinearRegressionModel.transform" title="pipefitter.estimator.regression.LinearRegressionModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">LinearRegressionModel.transform</span></code></a>(table,&nbsp;...)</td>
+<td>Transform function for the model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="neural-network-model">
+<h3>Neural Network Model<a class="headerlink" href="#neural-network-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.estimator.neural_net.NeuralNetworkModel.score.html#pipefitter.estimator.neural_net.NeuralNetworkModel.score" title="pipefitter.estimator.neural_net.NeuralNetworkModel.score"><code class="xref py py-obj docutils literal"><span class="pre">NeuralNetworkModel.score</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Score the data using the model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.estimator.neural_net.NeuralNetworkModel.transform.html#pipefitter.estimator.neural_net.NeuralNetworkModel.transform" title="pipefitter.estimator.neural_net.NeuralNetworkModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">NeuralNetworkModel.transform</span></code></a>(table,&nbsp;\*args,&nbsp;...)</td>
+<td>Transform function for the model</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="pipelines">
+<h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pipeline">
+<h3>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Pipelines are a series of transformers followed by an estimator
+used to construct a self-contained workflow.  When the <code class="docutils literal"><span class="pre">fit</span></code> or
+<code class="docutils literal"><span class="pre">score</span></code> method of the pipeline is executed, each stage of the
+pipeline is executed in order.  The output of each stage is used
+as the input for the next stage.  The result is the output from
+the last stage.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.pipeline.Pipeline.html#pipefitter.pipeline.Pipeline" title="pipefitter.pipeline.Pipeline"><code class="xref py py-obj docutils literal"><span class="pre">Pipeline</span></code></a>(stages)</td>
+<td>Execute a series of transformers and estimators</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.pipeline.Pipeline.fit.html#pipefitter.pipeline.Pipeline.fit" title="pipefitter.pipeline.Pipeline.fit"><code class="xref py py-obj docutils literal"><span class="pre">Pipeline.fit</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Train the models using the stages in the pipeline</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.pipeline.Pipeline.transform.html#pipefitter.pipeline.Pipeline.transform" title="pipefitter.pipeline.Pipeline.transform"><code class="xref py py-obj docutils literal"><span class="pre">Pipeline.transform</span></code></a>(table,&nbsp;\*args,&nbsp;\*\*kwargs)</td>
+<td>Execute the transformations in this pipeline only</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pipeline-model">
+<h3>Pipeline Model<a class="headerlink" href="#pipeline-model" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.pipeline.PipelineModel.score.html#pipefitter.pipeline.PipelineModel.score" title="pipefitter.pipeline.PipelineModel.score"><code class="xref py py-obj docutils literal"><span class="pre">PipelineModel.score</span></code></a>(table,&nbsp;\*\*kwargs)</td>
+<td>Apply transformations and score the data using the trained model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.pipeline.PipelineModel.transform.html#pipefitter.pipeline.PipelineModel.transform" title="pipefitter.pipeline.PipelineModel.transform"><code class="xref py py-obj docutils literal"><span class="pre">PipelineModel.transform</span></code></a>(table)</td>
+<td>Run the transforms in the trained pipeline</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="transformers">
+<h2>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h2>
+<p>Transformers are used to modify your data sets.  Currently, this
+includes various forms of imputing missing values in your data sets.</p>
+<div class="section" id="imputers">
+<h3>Imputers<a class="headerlink" href="#imputers" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.transformer.imputer.Imputer.html#pipefitter.transformer.imputer.Imputer" title="pipefitter.transformer.imputer.Imputer"><code class="xref py py-obj docutils literal"><span class="pre">Imputer</span></code></a>([value])</td>
+<td>Impute missing values in a data set</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.transformer.imputer.Imputer.transform.html#pipefitter.transformer.imputer.Imputer.transform" title="pipefitter.transformer.imputer.Imputer.transform"><code class="xref py py-obj docutils literal"><span class="pre">Imputer.transform</span></code></a>(table[,&nbsp;value])</td>
+<td>Perform the imputation on the given data set</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="hyperparameter-tuning">
+<h2>HyperParameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">¶</a></h2>
+<p>Hyperparameter tuning allows you to test various combinations of
+model parameters in one workflow.  This can be done either on
+a single Estimator class instance or a Pipeline.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/pipefitter.model_selection.HyperParameterTuning.html#pipefitter.model_selection.HyperParameterTuning" title="pipefitter.model_selection.HyperParameterTuning"><code class="xref py py-obj docutils literal"><span class="pre">HyperParameterTuning</span></code></a>(\*\*kwargs)</td>
+<td>Perform search over all combinations of specified parameters</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/pipefitter.model_selection.HyperParameterTuning.gridsearch.html#pipefitter.model_selection.HyperParameterTuning.gridsearch" title="pipefitter.model_selection.HyperParameterTuning.gridsearch"><code class="xref py py-obj docutils literal"><span class="pre">HyperParameterTuning.gridsearch</span></code></a>(table[,&nbsp;n_jobs])</td>
+<td>Fit model over various permutations of parameters</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="generated/pipefitter.estimator.LogisticRegression.html" class="btn btn-neutral float-right" title="pipefitter.estimator.LogisticRegression" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting-started.html" class="btn btn-neutral" title="Getting started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017 SAS Institute Inc. All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
