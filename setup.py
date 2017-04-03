@@ -22,9 +22,9 @@ import glob
 from setuptools import setup, find_packages
 
 try:
-    README = open('README.md', 'r').read()
+    README = open('README.rst', 'r').read()
 except:
-    README = 'See README.md'
+    README = 'See README.rst'
 
 LICENSE = 'Apache v2.0'
 
