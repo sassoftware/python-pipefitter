@@ -43,7 +43,7 @@ setup(
         'pandas >= 0.16.0'
     ],
     classifiers = [
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Science/Research',
         'Programming Language :: Python',
