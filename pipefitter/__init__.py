@@ -27,4 +27,4 @@ SAS as well as SAS Cloud Analytic Services (CAS) in SAS Viya.
 
 from __future__ import print_function, division, absolute_import, unicode_literals
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'

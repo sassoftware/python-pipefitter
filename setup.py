@@ -31,7 +31,7 @@ LICENSE = 'Apache v2.0'
 setup(
     zip_safe = True,
     name = 'pipefitter',
-    version = '1.0.0',
+    version = '1.0.1',
     description = 'SAS Pipefitter',
     long_description = README,
     author = 'SAS',

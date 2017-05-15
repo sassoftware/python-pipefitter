@@ -227,7 +227,7 @@ def get_target_level_info(model, score_out, event):
             event_index = model.get_default_event_level(n_levels)
         else:
             event_index = -1
-            for i in xrange(n_levels):
+            for i in range(n_levels):
                 if level_info['levels'][i].strip().upper() == event.strip().upper():
                     event_index = i
                     break
