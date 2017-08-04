@@ -170,7 +170,9 @@ class EstimatorMixIn(object):
         out = {}
         for item in params:
             for key, value in item.items():
-                if isinstance(value, six.string_types):
+                if key in ['inputs', 'target', 'nominals']:
+                    pass
+                elif isinstance(value, six.string_types):
                     value = value.replace('_', '')
                 if self.__class__.__name__ + ':' + key in PARAM_MAP:
                     key = PARAM_MAP[self.__class__.__name__ + ':' + key]
