@@ -31,7 +31,7 @@ LICENSE = 'Apache v2.0'
 setup(
     zip_safe = True,
     name = 'pipefitter',
-    version = '1.0.1',
+    version = '1.0.1-dev',
     description = 'SAS Pipefitter',
     long_description = README,
     author = 'SAS',
@@ -40,7 +40,9 @@ setup(
     license = LICENSE,
     packages = find_packages(),
     install_requires = [
-        'pandas >= 0.16.0'
+        'pandas >= 0.16.0',
+        'saspy',
+        'swat'
     ],
     classifiers = [
         'Development Status :: 5 - Production/Stable',
@@ -53,6 +55,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Scientific/Engineering',
     ],
 )
