@@ -21,8 +21,8 @@ SAS Cloud Analytic Services on SAS Viya.
    import os
    host = os.environ['CASHOST']
    port = os.environ['CASPORT']
-   userid = None
-   password = None
+   userid = os.environ.get('CASUSER', None)
+   password = os.environ.get('CASPASSWORD', None)
    cfgname = os.environ.get('SASPY_CONFIG', 'tdi')
 
 .. ipython:: python

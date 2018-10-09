@@ -31,6 +31,17 @@ dependent and this document shows how to run the pipeline first with SAS 9
 and then with SAS Viya.
 
 
+.. ipython:: python
+   :suppress:
+
+   import os
+   host = os.environ['CASHOST']
+   port = os.environ['CASPORT']
+   userid = os.environ.get('CASUSER', None)
+   password = os.environ.get('CASPASSWORD', None)
+   cfgname = os.environ.get('SASPY_CONFIG', 'tdi')
+
+
 ******************
 Build the pipeline
 ******************
@@ -105,12 +116,6 @@ a Python API.
 First, start a SAS session and copy the training data to a SAS data set.
 
 .. ipython:: python
-   :suppress:
-
-   import os
-   cfgname = os.environ.get('SASPY_CONFIG', 'tdi')
-
-.. ipython:: python
 
    import saspy
 
@@ -161,15 +166,6 @@ this section:
   does need to be retrained.
 
 Use SAS SWAT to connect to SAS Cloud Analytic Services on SAS Viya.
-
-.. ipython:: python
-   :suppress:
-
-   import os
-   host = os.environ['CASHOST']
-   port = os.environ['CASPORT']
-   userid = os.environ.get('CASUSER', None)
-   password = os.environ.get('CASPASSWORD', None)
 
 .. ipython:: python
 
