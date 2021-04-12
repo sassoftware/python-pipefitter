@@ -74,10 +74,10 @@ class TestUtils(tm.TestCase):
     def test_is_parallelizable(self):
         tbl = self.table
         with ResourceManager() as mgr:
-            self.assertEqual(tbl.tableinfo().TableInfo.ix[0, 'Global'], 0)
+            self.assertEqual(tbl.tableinfo().TableInfo.loc[0, 'Global'], 0)
             self.assertTrue(mgr.is_parallelizable(tbl) is False) 
             tbl.table.promote(drop=True)
-            self.assertEqual(tbl.tableinfo().TableInfo.ix[0, 'Global'], 1)
+            self.assertEqual(tbl.tableinfo().TableInfo.loc[0, 'Global'], 1)
             self.assertTrue(mgr.is_parallelizable(tbl) is True) 
 
     def test_emancipate(self):

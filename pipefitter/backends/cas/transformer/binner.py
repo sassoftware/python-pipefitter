@@ -68,7 +68,7 @@ class Binner(transformer.Binner):
 
         params['copyvars'] = set(cols).difference(set(params['inputs']))
 
-        table = table.datapreprocess.binning(**params)['OutputCasTables'].ix[0, 'casTable']
+        table = table.datapreprocess.binning(**params)['OutputCasTables'].loc[0, 'casTable']
 
         # Reset original column order
         table.set_param(vars=list(cols))

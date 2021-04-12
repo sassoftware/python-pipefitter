@@ -159,7 +159,8 @@ class TestLogistic(tm.TestCase):
         self.assertEqual(model.diagnostics.__class__.__name__, 'CASResults')
         self.assertEqual(sorted(model.diagnostics.keys()), ['ClassInfo',
              'ConvergenceStatus', 'Dimensions', 'FitStatistics', 'GlobalTest',
-             'ModelInfo', 'NObs', 'ParameterEstimates', 'ResponseProfile', 'Timing'])
+             'ModelInfo', 'NObs', 'ParameterEstimates', 'PredProbName',
+             'ResponseProfile', 'Timing'])
 
     def test_classification_score(self):
         tbl = self.table
