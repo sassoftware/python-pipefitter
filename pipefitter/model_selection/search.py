@@ -291,13 +291,13 @@ class HyperParameterTuning(BaseGridSearchCV):
                 clock_time = 0
 
                 for df in out[grid_start:grid_start + n_folds]:
-                    this_score = df.ix[rowidx, score_type]
-                    this_n_test_samples = df.ix[rowidx, 'NObsUsed']
-                    this_parameters = df.ix[rowidx, 'FitParameters']
+                    this_score = df.loc[rowidx, score_type]
+                    this_n_test_samples = df.loc[rowidx, 'NObsUsed']
+                    this_parameters = df.loc[rowidx, 'FitParameters']
 
                     all_scores.append(this_score)
 
-                    clock_time += df.ix[rowidx, 'ClockTime']
+                    clock_time += df.loc[rowidx, 'ClockTime']
                 
                     this_score *= this_n_test_samples
                     n_test_samples += this_n_test_samples
