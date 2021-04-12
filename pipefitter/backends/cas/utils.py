@@ -35,7 +35,7 @@ class ResourceManager(base.ResourceManager):
         ''' Can usage of these tables be parallelized? '''
         for table in tables:
             res = table.retrieve('table.tableinfo', _messagelevel='error', _apptag='UI')
-            if not res['TableInfo'].ix[0, 'Global']:
+            if not res['TableInfo'].loc[0, 'Global']:
                 return False
         return True
 
@@ -58,7 +58,7 @@ class ResourceManager(base.ResourceManager):
         promote = False
 
         res = data.retrieve('table.tableinfo', _messagelevel='error', _apptag='UI')
-        if res['TableInfo'].ix[0, 'Global']:
+        if res['TableInfo'].loc[0, 'Global']:
             promote = True
 
         if isinstance(k, numbers.Integral):
