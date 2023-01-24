@@ -20,12 +20,18 @@
 SAS Imputer Implementations
 
 '''
-
 from __future__ import print_function, division, absolute_import, unicode_literals
 
 import pandas as pd
 import uuid
 from .... import transformer
+
+_log_cnt = 0
+def _logcnt(next=True):
+    global _log_cnt
+    if next == True:
+        _log_cnt += 1
+    return '%08d' % _log_cnt
 
 
 class Imputer(transformer.Imputer):
@@ -54,12 +60,13 @@ class Imputer(transformer.Imputer):
         Returns
         -------
         SASdata
-
         '''
-        if (table.table.startswith('_imp_')): 
+        if (table.table.startswith('_imp_')):
            tname = table.table
         else:
-           tname = "_imp_"+table.sas._io._logcnt()+table.table[0:18] 
+           #print("_io", table.sas._io._logcnt(False), "pipe",_logcnt(False))
+           #tname = "_imp_"+table.sas._io._logcnt()+table.table[0:18]
+           tname = "_imp_"+_logcnt()+table.table[0:18]
         sql = "proc sql;\n  select\n"
         ds1 = "data "+table.libref+"."+tname+"; set "+table.libref+"."+table.table+";\n"
 
@@ -151,8 +158,8 @@ class Imputer(transformer.Imputer):
                      ds1     += dsmiss % (col, col, '"&imp_mode_'+col+'."')
 
                elif vars.get(col.upper()) != 'N':
-                  continue 
-     
+                  continue
+
                elif val == transformer.Imputer.MEAN:
                   sql     += sqlsel %('mean', col)
                   sqlinto += '    :imp_mean_'+col+',\n'
@@ -180,7 +187,7 @@ class Imputer(transformer.Imputer):
                   print('HOW DID I GET to HERE?????')
 
             if len(sql) > 20:
-               sql = sql.rstrip(', \n')+'\n'+sqlinto.rstrip(', \n')+'\n  from '+table.libref+'.'+table.table+';\nquit;\n' 
+               sql = sql.rstrip(', \n')+'\n'+sqlinto.rstrip(', \n')+'\n  from '+table.libref+'.'+table.table+';\nquit;\n'
             else:
                sql = ''
             ds1 += 'run;\n'
