@@ -41,7 +41,7 @@ setup(
     packages = find_packages(),
     install_requires = [
         'pandas >= 0.16.0',
-        'saspy',
+        'saspy >= 3.6.7',
         'swat'
     ],
     classifiers = [

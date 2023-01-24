@@ -30,11 +30,11 @@ import re
 DTREE_MAP = {
     'max_branches': 'proc_option_maxbranch',
     'max_depth'   : 'proc_option_maxdepth',
-    'leaf_size'   : 'minleafsize',
+    'leaf_size'   : 'proc_option_minleafsize',
     'inputs'      : 'input',
     'n_bins'      : 'proc_option_intervalbins',
     'prune'       : 'prune',
-    'alpha'       : 'alpha',
+    # 'alpha'       : 'alpha', # Alpha is not a general option for HPSPLIT
     'nominals'    : 'nominals'
 }
 
@@ -98,6 +98,8 @@ class EstimatorMixIn(object):
 
         '''
         out = {}
+        # add caller key so SASPy knows to deal with nominals in all cases
+        out['caller'] = 'pipefitter'
         procoptsDict = {}
 
         if est == 'RF':
